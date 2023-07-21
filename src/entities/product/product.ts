@@ -1,9 +1,9 @@
-export interface IProcuct {
+export interface IProduct {
   name: string;
   price: number;
   description: string;
 }
 
 export class Product {
-  constructor(public props: IProcuct) {}
+  constructor(public props: IProduct) {}
 }
