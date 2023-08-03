@@ -1,6 +1,6 @@
-import { IProduct } from '../entities/product/product'
+import { ProductsProps } from '../entities/product/product'
 
 export interface ProductRepository {
-  create(product: IProduct): Promise<void>
-  checkIfExist(product_id: number): boolean
+  create(product: ProductsProps): Promise<void>
+  checkIfExist(product_id: number): Promise<boolean>
 }

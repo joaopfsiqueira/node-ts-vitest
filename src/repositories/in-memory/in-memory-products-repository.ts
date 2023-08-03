@@ -1,14 +1,14 @@
-import { IProduct } from '../../entities/product/product'
+import { ProductsProps } from '../../entities/product/product'
 import { ProductRepository } from '../products-repository'
 
 export class InMemoryProductRepository implements ProductRepository {
-  public items: IProduct[] = []
+  public items: ProductsProps[] = []
 
-  async create(product: IProduct): Promise<void> {
+  async create(product: ProductsProps): Promise<void> {
     this.items.push(product)
   }
 
-  checkIfExist(product_id: number): boolean {
+  async checkIfExist(product_id: number): Promise<boolean> {
     return this.items.some((objeto) => objeto.id === product_id)
   }
 }

@@ -1,3 +1,4 @@
+import { ProductRepository } from '../repositories/products-repository'
 import { Product } from '../entities/product/product'
 
 interface ICreateProductRequest {
@@ -10,9 +11,12 @@ interface ICreateProductRequest {
 type CreateProductResponse = Product
 
 export class CreateProduct {
+  constructor(private productRepository: ProductRepository) {}
+
   async execute({ id, name, price, description }: ICreateProductRequest): Promise<CreateProductResponse> {
     const product = new Product({ id, name, price, description })
 
+    await this.productRepository.create(product)
     return product
   }
 }
