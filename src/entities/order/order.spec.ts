@@ -30,6 +30,7 @@ test('should be create an order', () => {
     })
 
     const order = new Order({
+        id: 1,
         products,
         value: valor,
     })
