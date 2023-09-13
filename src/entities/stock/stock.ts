@@ -1,18 +1,18 @@
 import { ProductsProps } from '../product/product'
 
-export interface IStock {
-  quantity: number
-  product: ProductsProps
+export interface StockProps {
+    quantity: number
+    product_id: number
 }
 
 export class Stock {
-  constructor(public stock: IStock) {}
+    constructor(public stock: StockProps) {}
 
-  get quantity(): number {
-    return this.stock.quantity
-  }
+    get quantity(): number {
+        return this.stock.quantity
+    }
 
-  get product(): ProductsProps {
-    return this.stock.product
-  }
+    get product(): number {
+        return this.stock.product_id
+    }
 }
