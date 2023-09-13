@@ -1,5 +1,3 @@
-import { ProductsProps } from '../product/product'
-
 export interface StockProps {
     quantity: number
     product_id: number
