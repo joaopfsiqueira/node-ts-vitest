@@ -10,7 +10,7 @@ export class Stock {
         return this.stock.quantity
     }
 
-    get product(): number {
+    get product_id(): number {
         return this.stock.product_id
     }
 }
