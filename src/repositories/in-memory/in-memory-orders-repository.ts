@@ -1,5 +1,7 @@
 import { OrderProps } from '../../entities/order/order'
-export class InMemoryOrderRepository {
+import { OrderRepository } from '../orders-repository'
+
+export class InMemoryOrderRepository implements OrderRepository {
     public items: OrderProps[] = []
 
     async create(order: OrderProps): Promise<void> {
