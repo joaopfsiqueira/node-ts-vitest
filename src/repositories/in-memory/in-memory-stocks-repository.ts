@@ -1,6 +1,7 @@
 import { StockProps } from '../../entities/stock/stock'
+import { StockRepository } from '../stock-repository'
 
-export class InMemoryStockRepository {
+export class InMemoryStockRepository implements StockRepository {
     public items: StockProps[] = []
 
     async create(stock: StockProps): Promise<void> {
