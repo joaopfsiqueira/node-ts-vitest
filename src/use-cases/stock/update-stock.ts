@@ -11,8 +11,13 @@ export class CreateProduct {
     async execute({ quantity, product_id }: ICreateStockRequest): Promise<any> {
         const stockAlreadyExists = await this.stockRepository.checkIfExist(product_id)
 
+        const stock = {
+            quantity,
+            product_id,
+        }
+
         if (stockAlreadyExists) {
-            const res = await this.stockRepository.updateStock(quantity, product_id)
+            const res = await this.stockRepository.updateStock(stock)
 
             if (res) return { status: 200, message: 'Stock atualizado com sucesso!' }
         } else {

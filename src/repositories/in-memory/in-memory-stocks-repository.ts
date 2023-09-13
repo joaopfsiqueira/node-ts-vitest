@@ -12,11 +12,11 @@ export class InMemoryStockRepository implements StockRepository {
         return this.items.some((objeto) => objeto.product_id === product_id)
     }
 
-    async updateStock(quantity: number, product_id: number): Promise<boolean> {
-        const stockToUpdate = this.items.find((objeto) => objeto.product_id === product_id)
+    async updateStock(stock: StockProps): Promise<boolean> {
+        const stockToUpdate = this.items.find((objeto) => objeto.product_id === stock.product_id)
 
         if (stockToUpdate) {
-            stockToUpdate.quantity = quantity
+            stockToUpdate.quantity = stock.quantity
             return true
         } else {
             throw new Error('Product not found')
