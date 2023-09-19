@@ -1,14 +1,10 @@
-import { OrderProps } from '../../entities/order/order'
+import { Order } from '../../entities/order/order'
 import { OrderRepository } from '../orders-repository'
 
 export class InMemoryOrderRepository implements OrderRepository {
-    public items: OrderProps[] = []
+    public items: Order[] = []
 
-    async create(order: OrderProps): Promise<void> {
+    async create(order: Order): Promise<void> {
         this.items.push(order)
-    }
-
-    async checkIfExist(order_id: number): Promise<boolean> {
-        return this.items.some((objeto) => objeto.id === order_id)
     }
 }
