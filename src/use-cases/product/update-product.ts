@@ -6,7 +6,7 @@ interface ICreateProductRequest {
     price: number
     description: string
 }
-export class CreateProduct {
+export class UpdateProduct {
     constructor(private productRepository: ProductRepository) {}
 
     async execute({ id, name, price, description }: ICreateProductRequest): Promise<any> {
