@@ -1,8 +1,8 @@
-import { ProductsProps } from '../product/product'
+import { Product } from '../product/product'
 
 export interface OrderProps {
     id: number
-    products: ProductsProps[]
+    products: Promise<Product>[]
     value: number
 }
 

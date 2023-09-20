@@ -1,10 +1,10 @@
 import { OrderRepository } from '../../repositories/orders-repository'
 import { Order } from '../../entities/order/order'
-import { ProductsProps } from '../../entities/product/product'
+import { Product } from '../../entities/product/product'
 
 interface ICreateOrderRequest {
     id: number
-    products: ProductsProps[]
+    products: any[] | Promise<Product>[]
 }
 
 type CreateOrderResponse = Order

@@ -13,7 +13,12 @@ type CreateProductResponse = Product
 export class CreateProduct {
     constructor(private productRepository: ProductRepository) {}
 
-    async execute({ id, name, price, description }: ICreateProductRequest): Promise<CreateProductResponse> {
+    async execute({
+        id,
+        name,
+        price,
+        description,
+    }: ICreateProductRequest): Promise<CreateProductResponse> {
         const productAlreadyExists = await this.productRepository.checkIfExist(id)
 
         if (productAlreadyExists) {
