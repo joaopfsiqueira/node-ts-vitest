@@ -14,14 +14,19 @@ export class CreateOrder {
 
     async execute({ id, products }: ICreateOrderRequest): Promise<CreateOrderResponse> {
         let value = 0
-        products.map((product) => {
-            value += product.price
-        })
 
-        const order = new Order({ id, products, value })
+        if (products.length > 0) {
+            products.map((product) => {
+                value += product.price
+            })
 
-        await this.orderRepository.create(order)
+            const order = new Order({ id, products, value })
 
-        return order
+            await this.orderRepository.create(order)
+
+            return order
+        } else {
+            throw new Error('Missing params: Products')
+        }
     }
 }
