@@ -4,5 +4,5 @@ export interface StockRepository {
     create(stock: StockProps): Promise<void>
     checkIfExist(stock_id: number): Promise<boolean>
     returnStockByProductId(product_id: number): Promise<StockProps>
-    updateStock(stock: StockProps): Promise<boolean>
+    updateStock(stockToUpdate: StockProps, stock: StockProps): Promise<boolean>
 }
