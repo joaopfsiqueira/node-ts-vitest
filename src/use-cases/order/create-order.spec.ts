@@ -4,17 +4,18 @@ import { CreateProduct } from '../product/create-product'
 import { Order } from '../../entities/order/order'
 import { InMemoryOrderRepository } from '../../repositories/in-memory/in-memory-orders-repository'
 import { InMemoryProductRepository } from '../../repositories/in-memory/in-memory-products-repository'
+import { MockProduct } from '../../repositories/mocks/mocks'
 
 describe('Create Order', () => {
     it('should be able to create a new order with 1 product', async () => {
         const orderRepository = new InMemoryOrderRepository()
-        const productRepository = new InMemoryProductRepository()
+        const productRepository = new InMemoryProductRepository(MockProduct)
 
         const createOrder = new CreateOrder(orderRepository)
         const createProduct = new CreateProduct(productRepository)
 
         const product1 = createProduct.execute({
-            id: 1,
+            id: 2,
             name: 'Notebook',
             price: 1000,
             description: 'Notebook Dell G15 - 8GB RAM - RTX1050 - I5 11H',
@@ -28,20 +29,20 @@ describe('Create Order', () => {
 
     it('should be able to create a new order with 2 products', async () => {
         const orderRepository = new InMemoryOrderRepository()
-        const productRepository = new InMemoryProductRepository()
+        const productRepository = new InMemoryProductRepository(MockProduct)
 
         const createOrder = new CreateOrder(orderRepository)
         const createProduct = new CreateProduct(productRepository)
 
         const product1 = createProduct.execute({
-            id: 1,
+            id: 2,
             name: 'Notebook',
             price: 1000,
             description: 'Notebook Dell G15 - 8GB RAM - RTX1050 - I5 11H',
         })
 
         const product2 = createProduct.execute({
-            id: 2,
+            id: 3,
             name: 'Celular',
             price: 2000,
             description: 'S23',
