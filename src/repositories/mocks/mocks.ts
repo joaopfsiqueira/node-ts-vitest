@@ -6,3 +6,10 @@ export const MockProduct = [
         description: 'Notebook',
     },
 ]
+
+export const MockStock = [
+    {
+        quantity: 10,
+        product_id: 1,
+    },
+]
