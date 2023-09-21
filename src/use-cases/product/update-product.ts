@@ -19,7 +19,8 @@ export class UpdateProduct {
         }
 
         if (productAlreadyExists) {
-            const res = await this.productRepository.updateProduct(product)
+            const productToUpdate = await this.productRepository.returnProductById(id)
+            const res = await this.productRepository.updateProduct(productToUpdate, product)
 
             if (res) return { status: 200, message: 'Product updated successfully' }
         } else {
