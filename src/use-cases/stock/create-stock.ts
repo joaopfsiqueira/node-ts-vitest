@@ -9,7 +9,7 @@ interface ICreateStockRequest {
 //criando o typo response que vai ser igual à um stock
 type CreateStockResponse = Stock
 
-export class CreateProduct {
+export class CreateStock {
     constructor(private stockRepository: StockRepository) {}
 
     async execute({ quantity, product_id }: ICreateStockRequest): Promise<CreateStockResponse> {
