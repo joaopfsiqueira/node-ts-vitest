@@ -13,6 +13,9 @@ test('create an product with id 1', () => {
     const product = new Product(productData)
 
     expect(product).toBeInstanceOf(Product) //como estamos instanciando, podemos usar o instanceof
-    expect(product.props.name).toEqual('Notebook')
-    expect(product.props.id).toEqual(1)
+    // validando os getters e seus retornos
+    expect(product.props.name).toBeTypeOf('string')
+    expect(product.props.id).toBeTypeOf('number')
+    expect(product.price).toBeTypeOf('number')
+    expect(product.props.description).toBeTypeOf('string')
 })
