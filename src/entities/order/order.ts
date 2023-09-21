@@ -1,8 +1,8 @@
-import { Product } from '../product/product'
+import { Product, ProductsProps } from '../product/product'
 
 export interface OrderProps {
     id: number
-    products: Promise<Product>[]
+    products: Promise<Product>[] | ProductsProps[]
     value: number
 }
 
@@ -13,7 +13,7 @@ export class Order {
         return this.props.id
     }
 
-    get product() {
+    get products() {
         return this.props.products
     }
 
