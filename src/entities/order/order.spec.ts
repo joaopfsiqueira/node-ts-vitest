@@ -40,4 +40,7 @@ test('should be create an order', () => {
     const order = new Order(orderData)
 
     expect(order).toBeInstanceOf(Order)
+    expect(order.props.id).toEqual(1)
+    expect(order.props.products).toEqual(products)
+    expect(order.props.value).toEqual(valor)
 })

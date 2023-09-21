@@ -14,8 +14,8 @@ test('create an product with id 1', () => {
 
     expect(product).toBeInstanceOf(Product) //como estamos instanciando, podemos usar o instanceof
     // validando os getters e seus retornos
-    expect(product.props.name).toBeTypeOf('string')
-    expect(product.props.id).toBeTypeOf('number')
-    expect(product.price).toBeTypeOf('number')
-    expect(product.props.description).toBeTypeOf('string')
+    expect(product.props.name).toEqual('Notebook')
+    expect(product.props.id).toEqual(1)
+    expect(product.price).toEqual(1000)
+    expect(product.props.description).toEqual('Notebook Dell G15 - 8GB RAM - RTX1050 - I5 11H')
 })
