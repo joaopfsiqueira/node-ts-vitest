@@ -11,7 +11,7 @@ describe('Create Product', () => {
 
         expect(
             createProduct.execute({
-                id: 1,
+                id: 2,
                 name: 'Notebook',
                 price: 1000,
                 description: 'Notebook Dell G15 - 8GB RAM - RTX1050 - I5 11H',
@@ -23,22 +23,17 @@ describe('Create Product', () => {
         const productRepository = new InMemoryProductRepository(MockProduct)
         const createProduct = new CreateProduct(productRepository)
 
-        //cadastro o primeiro produto com id 1
-        await createProduct.execute({
-            id: 1,
-            name: 'Notebook',
-            price: 1000,
-            description: 'Notebook Dell G15 - 8GB RAM - RTX1050 - I5 11H',
-        })
-
-        //tente cadastrar com o mesmo produto
-        expect(
-            createProduct.execute({
+        //tente cadastrar com o mesmo produto que já existe no mock, crio uma função wrapper async que vai charmar o método execute que é async.
+        const wrapper = async () => {
+            await createProduct.execute({
                 id: 1,
                 name: 'Notebook',
                 price: 1000,
                 description: 'Notebook Dell G15 - 8GB RAM - RTX1050 - I5 11H',
-            }),
-        ).rejects.toBeInstanceOf(Error)
+            })
+        }
+
+        //nesse caso, utilizei rejects por ser uma função async, e o await irá retornar uma Promise da função wrapper que chama o execute. Essa forma é melhor para validar retornos de uma função que não seja um objeto ou algo poupável na grande parte do tempo, nesse exemplo, um new Error.
+        await expect(wrapper).rejects.toThrowError('Product already exists')
     })
 })
