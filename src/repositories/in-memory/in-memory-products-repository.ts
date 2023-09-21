@@ -18,6 +18,16 @@ export class InMemoryProductRepository implements ProductRepository {
             : false
     }
 
+    async returnProduct(product_id: number): Promise<ProductsProps> {
+        const product = this.mockProduct.find((object) => object.id === product_id)
+
+        if (product) {
+            return product
+        } else {
+            throw new Error('Product not found')
+        }
+    }
+
     async updateProduct(productToUpdate: ProductsProps, product: ProductsProps): Promise<boolean> {
         try {
             Object.assign(productToUpdate, product) //pega tudo dos parametros e atualiza no producto atualizado, usando object.assign.
