@@ -2,6 +2,7 @@ import { expect, test } from 'vitest'
 import { Product } from './product'
 
 test('create an product with id 1', () => {
+    //como eu estou testando uma classe que tem getters e setters, eu preciso meio que duplicar a chamada da classe. Criando uma instância da classe e depois passando essa instância em uma outra chamada da mesma classe. Caso contrário, o teste não vi pegar os getters.
     const productData = new Product({
         id: 1,
         name: 'Notebook',
