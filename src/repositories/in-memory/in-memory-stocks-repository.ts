@@ -2,16 +2,16 @@ import { StockProps } from '../../entities/stock/stock'
 import { StockRepository } from '../stock-repository'
 
 export class InMemoryStockRepository implements StockRepository {
-    public items: StockProps[] = []
+    private stock: StockProps[] = []
 
     constructor(private mockStock: StockProps[]) {}
 
     async create(stock: StockProps): Promise<void> {
-        this.items.push(stock)
+        this.stock.push(stock)
     }
 
     async checkIfExist(product_id: number): Promise<boolean> {
-        return this.items.some((objeto) => objeto.product_id === product_id)
+        return this.stock.some((objeto) => objeto.product_id === product_id)
             ? true
             : this.mockStock.some((objeto) => objeto.product_id === product_id)
             ? true
