@@ -20,7 +20,7 @@ describe('Update Product', () => {
     it('should NOT be able to update not exist product', async () => {
         const stockRepository = new InMemoryStockRepository(MockStock)
         const updateStock = new UpdateStock(stockRepository)
-
+        //tente cadastrar com o mesmo produto que já existe no mock, crio uma função wrapper async que vai charmar o método execute que é async.
         const wrapper = async () => {
             await updateStock.execute({
                 quantity: 20,
