@@ -6,19 +6,18 @@ interface ICreateStockRequest {
     product_id: number
 }
 
-//criando o typo response que vai ser igual à um stock
-type CreateStockResponse = Stock
-
 export class CreateStock {
     constructor(private stockRepository: StockRepository) {}
 
-    async execute({ quantity, product_id }: ICreateStockRequest): Promise<CreateStockResponse> {
+    async execute({ quantity, product_id }: ICreateStockRequest): Promise<any> {
         const stockAlreadyExists = await this.stockRepository.checkIfExist(product_id)
 
         if (stockAlreadyExists) {
-            throw new Error(
-                'Product in stock already exists! Try again with a different product_id or try update the stock!',
-            )
+            return {
+                status: 403,
+                message:
+                    'Product in stock already exists! Try again with a different product_id or try update the stock!',
+            }
         }
 
         const stock = new Stock({ quantity, product_id })
