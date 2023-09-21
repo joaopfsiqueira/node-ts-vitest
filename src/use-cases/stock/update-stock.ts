@@ -5,7 +5,7 @@ interface ICreateStockRequest {
     product_id: number
 }
 
-export class CreateProduct {
+export class UpdateStock {
     constructor(private stockRepository: StockRepository) {}
 
     async execute({ quantity, product_id }: ICreateStockRequest): Promise<any> {
@@ -17,9 +17,14 @@ export class CreateProduct {
         }
 
         if (stockAlreadyExists) {
-            const res = await this.stockRepository.updateStock(stock)
+            const stockToUpdate = await this.stockRepository.returnStockByProductId(product_id)
+            const res = await this.stockRepository.updateStock(stockToUpdate, stock)
 
-            if (res) return { status: 200, message: 'Stock atualizado com sucesso!' }
+            if (res) {
+                return { status: 200, message: 'Stock updated successfully' }
+            } else {
+                return { status: 400, message: 'Stock not updated' }
+            }
         } else {
             throw new Error('Stock does not exists')
         }
