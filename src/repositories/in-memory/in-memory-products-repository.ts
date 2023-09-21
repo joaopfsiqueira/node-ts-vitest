@@ -4,21 +4,25 @@ import { ProductRepository } from '../products-repository'
 export class InMemoryProductRepository implements ProductRepository {
     public items: ProductsProps[] = []
 
+    constructor(private mockProduct: ProductsProps[]) {}
+
     async create(product: ProductsProps): Promise<void> {
         this.items.push(product)
     }
 
     async checkIfExist(product_id: number): Promise<boolean> {
         return this.items.some((objeto) => objeto.id === product_id)
+            ? true
+            : this.mockProduct.some((objeto) => objeto.id === product_id)
+            ? true
+            : false
     }
 
-    async updateProduct(product: ProductsProps): Promise<boolean> {
-        const productToUpdate = this.items.find((objeto) => objeto.id === product.id)
-
-        if (productToUpdate) {
+    async updateProduct(productToUpdate: ProductsProps, product: ProductsProps): Promise<boolean> {
+        try {
             Object.assign(productToUpdate, product) //pega tudo dos parametros e atualiza no producto atualizado, usando object.assign.
             return true
-        } else {
+        } catch {
             throw new Error(`Product not found`)
         }
     }
