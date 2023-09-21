@@ -2,10 +2,11 @@ import { describe, expect, it } from 'vitest'
 import { CreateProduct } from './create-product'
 import { Product } from '../../entities/product/product'
 import { InMemoryProductRepository } from '../../repositories/in-memory/in-memory-products-repository'
+import { MockProduct } from '../../repositories/mocks/mocks'
 
 describe('Create Product', () => {
     it('should be able to create an product', () => {
-        const productRepository = new InMemoryProductRepository()
+        const productRepository = new InMemoryProductRepository(MockProduct)
         const createProduct = new CreateProduct(productRepository)
 
         expect(
@@ -19,7 +20,7 @@ describe('Create Product', () => {
     })
 
     it('should not be able to create a product with the same id or already exist', async () => {
-        const productRepository = new InMemoryProductRepository()
+        const productRepository = new InMemoryProductRepository(MockProduct)
         const createProduct = new CreateProduct(productRepository)
 
         //cadastro o primeiro produto com id 1
