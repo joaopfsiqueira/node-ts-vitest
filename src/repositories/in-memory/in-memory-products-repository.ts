@@ -18,7 +18,7 @@ export class InMemoryProductRepository implements ProductRepository {
             : false
     }
 
-    async returnProduct(product_id: number): Promise<ProductsProps> {
+    async returnProductById(product_id: number): Promise<ProductsProps> {
         const product = this.mockProduct.find((object) => object.id === product_id)
 
         if (product) {
