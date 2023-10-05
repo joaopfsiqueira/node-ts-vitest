@@ -11,11 +11,8 @@ export class InMemoryProductRepository implements ProductRepository {
     }
 
     async checkIfExist(product_id: number): Promise<boolean> {
-        return this.items.some((objeto) => objeto.id === product_id)
-            ? true
-            : this.mockProduct.some((objeto) => objeto.id === product_id)
-            ? true
-            : false
+        const mock = this.mockProduct.some((objeto) => objeto.id === product_id) ? true : false
+        return mock
     }
 
     async returnProductById(product_id: number): Promise<ProductsProps> {
